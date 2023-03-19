@@ -1,0 +1,52 @@
+Άσκηση 1:
+_________
+
+
+h = [1, -1]
+[H, W] = [h,1,20]
+Metro = plot(freqz(abs(h)));
+Fash = plot(freqz(angle(h)));
+
+
+Άσκηση 2:
+_________
+
+h = [1, -1];
+w = pi/16;
+N = 0:100;
+x = cos(w*N);
+Y=filter(h,1,x);
+plot(Y);
+
+Άσκηση 3:
+_________
+Ψευδοχρωματισμός
+
+I = imread('photo.jpg');
+imagesc(I);
+
+
+Άσκηση 4:
+_________
+
+
+
+h = [1, -1];
+w = pi/16;
+N = 0:1000;
+x = cos(w*N);
+%Y=filter(h,1,x);
+y = filter(h,1,x);
+y2 = filter(h,1,I);
+%imagesc(y2);
+
+%y3 = filter(h,1,y2);
+%imagesc(y3);
+
+
+///////////////~!!!!!%Transpose -> row -> column
+
+
+y2t = filter(h,1,I);
+y21 = filter(h,1, transpose(y2t));
+imagesc(y21)

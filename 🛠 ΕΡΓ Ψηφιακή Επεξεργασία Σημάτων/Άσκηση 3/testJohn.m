@@ -1,0 +1,11 @@
+N = 1;
+h = 1/(2*N+1).^2 * ones(1,2*N+1);
+h = [h; h];
+I = imread('photo-deg.jpg');
+%I =[n1,n2];
+%%J = imnoise(I,'salt & pepper',0.02);
+%%K = medfilt2(J);
+%%imshow(I);
+Y = filter2(h,I);
+%B = medfilt2(I, [N N]);
+imagesc(Y);
