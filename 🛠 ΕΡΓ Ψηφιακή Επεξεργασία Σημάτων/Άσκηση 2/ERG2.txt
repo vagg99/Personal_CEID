@@ -1,0 +1,101 @@
+Άσκηση 1:
+_________
+
+1)
+>> B = fir1(30,0.48, 'low')
+
+
+B =
+
+  Columns 1 through 13
+
+   -0.0010    0.0016    0.0020   -0.0030   -0.0052    0.0058    0.0119   -0.0094   -0.0242    0.0133    0.0466   -0.0168   -0.0950
+
+  Columns 14 through 26
+
+    0.0191    0.3144    0.4799    0.3144    0.0191   -0.0950   -0.0168    0.0466    0.0133   -0.0242   -0.0094    0.0119    0.0058
+
+  Columns 27 through 31
+
+   -0.0052   -0.0030    0.0020    0.0016   -0.0010
+
+2)
+
+%lowpass
+
+>> h=firls(30,[0 .2 .3 1.0] ,[1 1 0 0]);
+>> fvtool(h)
+
+%highpass
+
+>> h=firls(30,[0 .2 .3 1],[0 0 1 1],'h');
+>> fvtool(h);
+
+3) 
+
+%lowpass
+
+>>  
+    % Example of a length 31 lowpass filter:
+    	h=firpm(30,[0 0.2 0.3 1],[1 1 0 0]);	% να βρω και νουμερα
+>> fvtool(h)
+
+%highpass
+
+>> h=firpm(30,[0 0.2 0.3 1],[0 0 1 1]); 		 % να βρω και νουμερα
+>> fvtool(h)
+
+
+Άσκηση 2:
+_________
+
+1)
+>>  load chirp;                     		% Load data (y and Fs) into workspace
+    y = y + 0.5*rand(size(y));                  % Adding noise
+    b = fir1(34,0.48,'high',chebwin(35,30));    % FIR filter design
+    freqz(b,1,512);                 		% Frequency response of filter
+    yf = filtfilt(b,1,y);   			% Zero-phase digital filtering
+    figure;
+    subplot(211); plot(y,'b'); title('Original Signal')
+    subplot(212); plot(output,'g'); title('Filtered Signal')
+
+>> sound(yf)	%clear
+>> sound(y)	%snows
+
+2)
+
+  %%Για νέο φίλτρο   h=firls(34,[0 .45 .5 1],[0 0 1 1]);
+  
+>>     load chirp;                     % Load data (y and Fs) into workspace
+    y = y + 0.5*rand(size(y));                  % Adding noise
+    h=firls(34,[0 .45 .5 1],[0 0 1 1]);
+    output = filtfilt(b,1,y);       % Zero-phase digital filtering
+    figure;
+    subplot(211); plot(y,'b'); title('Original Signal')
+    subplot(212); plot(output,'g'); title('Filtered Signal')
+>> sound(y)
+>> sound(output)
+
+
+3)
+
+>>     load chirp;                     % Load data (y and Fs) into workspace
+    y = y + 0.5*rand(size(y));                  % Adding noise
+    h=firpm(34,[0 .45 .5 1],[0 0 1 1]);
+    output = filtfilt(b,1,y);       % Zero-phase digital filtering
+    figure;
+    subplot(211); plot(y,'b'); title('Original Signal')
+    subplot(212); plot(output,'g'); title('Filtered Signal')
+>> sound(y)
+>> sound(output)
+
+
+Άσκηση 3:
+
+>> plot(abs(fft(yw)))
+>> plot(abs(fftshift(yw)))
+>> plot(20*log10(abs(fftshift(fft(yw,1024)))))
+>> fft(yw, 1024)
+
+%%notch Filters στο Google bandstop/Bandpass
+>>filterDesigner
