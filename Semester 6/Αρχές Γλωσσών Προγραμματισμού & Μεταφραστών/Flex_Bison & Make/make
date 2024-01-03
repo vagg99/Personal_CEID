@@ -1,0 +1,5 @@
+bison -y -d myParser.y
+flex myParser.l
+gcc -c y.tab.c lex.yy.c
+gcc y.tab.o lex.yy.o -o myParser
+./myParser.exe <name_of_file>
